@@ -76,6 +76,12 @@ class _homescreenState extends State<homescreen> {
     });
   }
 
+  void changeCheckbox(bool? value, int index) {
+    setState(() {
+      newTask[index][1] = !newTask[index][1];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,6 +103,7 @@ class _homescreenState extends State<homescreen> {
               done: newTask[index][1],
               deleteTask: (context) => deleteFunction(index),
               updateTask: () => updateFunction(index),
+              change: (value) => changeCheckbox(value, index),
             );
           },
           itemCount: newTask.length,

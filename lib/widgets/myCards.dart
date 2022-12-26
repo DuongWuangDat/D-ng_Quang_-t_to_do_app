@@ -11,6 +11,7 @@ class myCard extends StatefulWidget {
   bool done = false;
   Function(BuildContext)? deleteTask;
   VoidCallback updateTask;
+  Function(bool?)? change;
   DateTime? date;
   myCard({
     super.key,
@@ -18,6 +19,7 @@ class myCard extends StatefulWidget {
     required this.done,
     required this.deleteTask,
     this.date,
+    required this.change,
     required this.updateTask,
   }) {
     date ??= DateTime.now();
@@ -48,11 +50,7 @@ class _myCardState extends State<myCard> {
             child: Center(
               child: ListTile(
                   leading: Checkbox(
-                    onChanged: (value) {
-                      setState(() {
-                        widget.done = !widget.done;
-                      });
-                    },
+                    onChanged: widget.change,
                     value: widget.done,
                     activeColor: Colors.black,
                   ),
